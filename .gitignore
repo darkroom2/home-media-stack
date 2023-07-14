@@ -1,12 +1,19 @@
 # Custom
-/config/*
-!/config/jellyfin/.gitkeep
-!/config/sonarr/.gitkeep
 
-/data/*
-!/data/downloads/.gitkeep
-!/data/movies/.gitkeep
-!/data/tvshows/.gitkeep
+config/jellyfin/*
+!config/jellyfin/.gitkeep
+
+config/sonarr/*
+!config/sonarr/.gitkeep
+
+data/downloads/*
+!data/downloads/.gitkeep
+
+data/movies/*
+!data/movies/.gitkeep
+
+data/shows/*
+!data/shows/.gitkeep
 
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+all

@@ -2,26 +2,34 @@ services:
   jellyfin:
     image: linuxserver/jellyfin
     container_name: jellyfin
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://192.168.0.199:8096  #optional, auto-discovery url
+      - DOCKER_MODS=linuxserver/mods:jellyfin-amd
     env_file:
       - .env
     volumes:
       - ./config/jellyfin:/config
       - ./data/movies:/data/movies
-      - ./data/tvshows:/data/tvshows
+      - ./data/shows:/data/shows
     ports:
       - 8096:8096
-      - 8920:8920 # optional, https
-      - 7359:7359/udp # optional, dlna
-      - 1900:1900/udp # optional, ssdp
+      - 8920:8920  # optional, https
+      - 7359:7359/udp  # optional, dlna
+      - 1900:1900/udp  # optional, ssdp
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
     restart: unless-stopped
 
-#  sonarr:
-#    image: linuxserver/sonarr
-#    container_name: sonarr
-#    volumes:
-#      - ./config:/config
-#      - ./data/tvshows:/tv
-#      - ./data/downloads:/downloads
-#    ports:
-#      - 8989:8989
-#    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    env_file:
+      - .env
+    volumes:
+      - ./config/sonarr:/config
+      - ./data/shows:/shows  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+    ports:
+      - 8989:8989
+    restart: unless-stopped
