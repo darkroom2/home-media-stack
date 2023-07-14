@@ -33,3 +33,53 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    env_file:
+      - .env
+    volumes:
+        - ./config/radarr:/config
+        - ./data/movies:/movies  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+        - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+    ports:
+        - 7878:7878
+    restart: unless-stopped
+
+  lidarr:
+    image: linuxserver/lidarr
+    container_name: lidarr
+    env_file:
+      - .env
+    volumes:
+      - ./config/lidarr:/config
+      - ./data/music:/music  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
+  readarr:
+    image: linuxserver/readarr
+    container_name: readarr
+    env_file:
+      - .env
+    volumes:
+      - ./config/readarr:/config
+      - ./data/books:/books  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+
+  prowlarr:
+    image: linuxserver/prowlarr
+    container_name: prowlarr
+    env_file:
+      - .env
+    volumes:
+      - ./config/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
