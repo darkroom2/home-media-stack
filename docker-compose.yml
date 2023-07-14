@@ -2,6 +2,8 @@ services:
   jellyfin:
     image: linuxserver/jellyfin
     container_name: jellyfin
+    env_file:
+      - .env
     volumes:
       - ./config/jellyfin:/config
       - ./data/movies:/data/movies
