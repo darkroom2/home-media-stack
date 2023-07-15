@@ -3,22 +3,22 @@ services:
     image: linuxserver/jellyfin
     container_name: jellyfin
     environment:
-      - JELLYFIN_PublishedServerUrl=http://192.168.0.199:8096  #optional, auto-discovery url
-      - DOCKER_MODS=linuxserver/mods:jellyfin-amd
+      - 'JELLYFIN_PublishedServerUrl=http://192.168.0.199:8096'  #optional, auto-discovery url
+      - 'DOCKER_MODS=linuxserver/mods:jellyfin-amd'
     env_file:
       - .env
     volumes:
-      - ./config/jellyfin:/config
-      - ./data/movies:/data/movies
-      - ./data/shows:/data/shows
+      - './config/jellyfin:/config'
+      - './data/movies:/data/movies'
+      - './data/shows:/data/shows'
     ports:
-      - 8096:8096
-      - 8920:8920  # optional, https
-      - 7359:7359/udp  # optional, dlna
-      - 1900:1900/udp  # optional, ssdp
+      - '8096:8096'
+      - '8920:8920'  # optional, https
+      - '7359:7359/udp'  # optional, dlna
+      - '1900:1900/udp'  # optional, ssdp
     devices:
-      - /dev/dri:/dev/dri
-      - /dev/kfd:/dev/kfd
+      - '/dev/dri:/dev/dri'
+      - '/dev/kfd:/dev/kfd'
     restart: unless-stopped
 
   sonarr:
@@ -27,11 +27,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./config/sonarr:/config
-      - ./data/shows:/shows  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
-      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './config/sonarr:/config'
+      - './data/shows:/shows'  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './data/downloads:/downloads'  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
     ports:
-      - 8989:8989
+      - '8989:8989'
     restart: unless-stopped
 
   radarr:
@@ -40,11 +40,11 @@ services:
     env_file:
       - .env
     volumes:
-        - ./config/radarr:/config
-        - ./data/movies:/movies  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
-        - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './config/radarr:/config'
+      - './data/movies:/movies'  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './data/downloads:/downloads'  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
     ports:
-        - 7878:7878
+      - '7878:7878'
     restart: unless-stopped
 
   lidarr:
@@ -53,24 +53,24 @@ services:
     env_file:
       - .env
     volumes:
-      - ./config/lidarr:/config
-      - ./data/music:/music  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
-      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './config/lidarr:/config'
+      - './data/music:/music'  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './data/downloads:/downloads'  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
     ports:
-      - 8686:8686
+      - '8686:8686'
     restart: unless-stopped
 
   readarr:
-    image: linuxserver/readarr:develop
+    image: 'linuxserver/readarr:develop'
     container_name: readarr
     env_file:
       - .env
     volumes:
-      - ./config/readarr:/config
-      - ./data/books:/books  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
-      - ./data/downloads:/downloads  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './config/readarr:/config'
+      - './data/books:/books'  # optional, copy-to path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
+      - './data/downloads:/downloads'  # optional, downloaded files path (TODO - optimize: https://hub.docker.com/r/linuxserver/sonarr#:~:text=Use%20the%20optional%20paths%20if%20you%20dont%20understand%2C%20or%20dont%20want%20hardlinks/atomic%20moves.)
     ports:
-      - 8787:8787
+      - '8787:8787'
     restart: unless-stopped
 
   prowlarr:
@@ -79,9 +79,9 @@ services:
     env_file:
       - .env
     volumes:
-      - ./config/prowlarr:/config
+      - './config/prowlarr:/config'
     ports:
-      - 9696:9696
+      - '9696:9696'
     restart: unless-stopped
 
   transmission:
@@ -90,11 +90,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./config/transmission:/config
-      - ./data/downloads:/downloads
-      - ./data/torrents:/watch
+      - './config/transmission:/config'
+      - './data/downloads:/downloads'
+      - './data/torrents:/watch'
     ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
+      - '9091:9091'
+      - '51413:51413'
+      - '51413:51413/udp'
     restart: unless-stopped
