@@ -61,7 +61,7 @@ services:
     restart: unless-stopped
 
   readarr:
-    image: linuxserver/readarr
+    image: linuxserver/readarr:develop
     container_name: readarr
     env_file:
       - .env
@@ -82,4 +82,19 @@ services:
       - ./config/prowlarr:/config
     ports:
       - 9696:9696
+    restart: unless-stopped
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    env_file:
+      - .env
+    volumes:
+      - ./config/transmission:/config
+      - ./data/downloads:/downloads
+      - ./data/torrents:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
     restart: unless-stopped

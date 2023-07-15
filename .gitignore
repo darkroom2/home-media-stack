@@ -6,6 +6,8 @@ config/radarr/*
 config/lidarr/*
 config/readarr/*
 config/prowlarr/*
+config/transmission/*
+data/torrents/*
 data/downloads/*
 data/movies/*
 data/shows/*
@@ -18,6 +20,8 @@ data/books/*
 !config/lidarr/.gitkeep
 !config/readarr/.gitkeep
 !config/prowlarr/.gitkeep
+!config/transmission/.gitkeep
+!data/torrents/.gitkeep
 !data/downloads/.gitkeep
 !data/movies/.gitkeep
 !data/shows/.gitkeep
