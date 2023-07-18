@@ -98,3 +98,16 @@ services:
       - '51413:51413'
       - '51413:51413/udp'
     restart: unless-stopped
+
+  cups-avahi-airprint:
+    image: 'chuckcharlie/cups-avahi-airprint:latest'
+    container_name: cups
+    env_file:
+      - .env
+    volumes:
+      - './config/cups:/config'
+      - './data/printers:/services'
+    devices:
+      - '/dev/bus/usb/001/003'
+    network_mode: host
+    restart: unless-stopped
