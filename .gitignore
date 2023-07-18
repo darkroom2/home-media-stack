@@ -8,6 +8,8 @@ config/readarr/*
 config/prowlarr/*
 config/transmission/*
 config/cups/*
+config/heimdall/*
+config/yacht/*
 data/torrents/*
 data/downloads/*
 data/movies/*
@@ -15,6 +17,7 @@ data/shows/*
 data/music/*
 data/books/*
 data/printers/*
+data/services/*
 
 !config/jellyfin/.gitkeep
 !config/sonarr/.gitkeep
@@ -24,6 +27,8 @@ data/printers/*
 !config/prowlarr/.gitkeep
 !config/transmission/.gitkeep
 !config/cups/.gitkeep
+!config/heimdall/.gitkeep
+!config/yacht/.gitkeep
 !data/torrents/.gitkeep
 !data/downloads/.gitkeep
 !data/movies/.gitkeep
@@ -31,6 +36,7 @@ data/printers/*
 !data/music/.gitkeep
 !data/books/.gitkeep
 !data/printers/.gitkeep
+!data/services/.gitkeep
 
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+all

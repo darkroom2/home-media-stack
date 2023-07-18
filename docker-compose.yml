@@ -108,6 +108,30 @@ services:
       - './config/cups:/config'
       - './data/printers:/services'
     devices:
-      - '/dev/bus/usb/001/003'
+      - /dev/bus/usb/001/003
     network_mode: host
     restart: unless-stopped
+
+  heimdall:
+    image: 'lscr.io/linuxserver/heimdall:latest'
+    container_name: heimdall
+    env_file:
+      - .env
+    volumes:
+      - './config/heimdall:/config'
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: unless-stopped
+
+  yacht:
+    image: selfhostedpro/yacht
+    container_name: yacht
+    env_file:
+      - .env
+    volumes:
+      - './config/yacht:/config'
+      - './data/services:/services'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - '8000:8000'
