@@ -5,6 +5,7 @@ config/sonarr/*
 config/radarr/*
 config/lidarr/*
 config/readarr/*
+config/bazarr/*
 config/prowlarr/*
 config/transmission/*
 config/cups/*
@@ -24,6 +25,7 @@ data/services/*
 !config/radarr/.gitkeep
 !config/lidarr/.gitkeep
 !config/readarr/.gitkeep
+!config/bazarr/.gitkeep
 !config/prowlarr/.gitkeep
 !config/transmission/.gitkeep
 !config/cups/.gitkeep

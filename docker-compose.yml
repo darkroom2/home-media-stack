@@ -73,6 +73,19 @@ services:
       - '8787:8787'
     restart: unless-stopped
 
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    env_file:
+      - .env
+    volumes:
+      - './config/bazarr:/config'
+      - './data/movies:/movies'
+      - './data/shows:/shows'
+    ports:
+      - '6767:6767'
+    restart: unless-stopped
+
   prowlarr:
     image: linuxserver/prowlarr
     container_name: prowlarr
@@ -100,7 +113,7 @@ services:
     restart: unless-stopped
 
   cups-avahi-airprint:
-    image: 'chuckcharlie/cups-avahi-airprint:latest'
+    image: chuckcharlie/cups-avahi-airprint
     container_name: cups
     env_file:
       - .env
@@ -113,7 +126,7 @@ services:
     restart: unless-stopped
 
   heimdall:
-    image: 'lscr.io/linuxserver/heimdall:latest'
+    image: linuxserver/heimdall
     container_name: heimdall
     env_file:
       - .env
