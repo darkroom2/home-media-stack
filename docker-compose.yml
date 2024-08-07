@@ -121,7 +121,7 @@ services:
       - './config/cups:/config'
       - './data/printers:/services'
     devices:
-      - /dev/bus/usb/001/003
+      - /dev/bus/usb
     network_mode: host
     restart: unless-stopped
 
@@ -148,3 +148,15 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     ports:
       - '8000:8000'
+    restart: unless-stopped
+
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    env_file:
+      - .env
+    volumes:
+      - './data/storage:/var/www/html'
+    ports:
+      - '8080:80'
+    restart: unless-stopped
