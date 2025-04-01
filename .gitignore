@@ -12,6 +12,8 @@ config/yacht/*
 config/nextcloud/*
 config/immich/*
 config/homeassistant/*
+config/zigbee2mqtt/*
+config/mosquitto/*
 data/torrents/*
 data/downloads/*
 data/movies/*
@@ -36,6 +38,8 @@ data/storage/*
 !config/nextcloud/.gitkeep
 !config/immich/.gitkeep
 !config/homeassistant/.gitkeep
+!config/zigbee2mqtt/.gitkeep
+!config/mosquitto/.gitkeep
 !data/torrents/.gitkeep
 !data/downloads/.gitkeep
 !data/movies/.gitkeep
@@ -45,4 +49,3 @@ data/storage/*
 !data/printers/.gitkeep
 !data/services/.gitkeep
 !data/storage/.gitkeep
-

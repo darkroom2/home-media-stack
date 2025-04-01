@@ -170,6 +170,29 @@ services:
       - /run/dbus:/run/dbus:ro
     network_mode: host
     privileged: true
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
     restart: unless-stopped
+
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    volumes:
+      - './config/mosquitto:/mosquitto'
+    ports:
+      - '1883:1883'
+      - '9001:9001'
+    command: 'mosquitto -c /mosquitto-no-auth.conf'
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    restart: unless-stopped
+    image: koenkk/zigbee2mqtt
+    volumes:
+      - ./config/zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8081:8080
+    environment:
+      - TZ=Europe/Warsaw
+    devices:
+      - /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_0049e1408ddbed11a81fe92d62c613ac-if00-port0:/dev/ttyUSB0
